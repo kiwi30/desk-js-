@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ </head>
+ <body>
+ <div> <input type="text" class="first" 
+ id="first" placeholder="canvas width"/></div>
+ <div><input type="text" class="first" 
+ id="second" placeholder="canvas height" /></div>
+ <div><input type="text" class="first" 
+ id="third" placeholder="number of cells" /></div>
+ <div><button class="btn btn-success" onclick="buildCanvas()">Submit</button></div>
+ <canvas width="0" height="0" id="myCanvas" style="background-color: #FFB6C1">
+ </canvas>
+ 
+<script>
+function buildCanvas(){
+var width=document.getElementById("first");
+var height=document.getElementById("second");
+var cells=document.getElementById("third");
+
+var desk = document.getElementById("myCanvas");
+desk.width=width.value;
+desk.height=height.value;
+
+ var context = desk.getContext('2d');
+ context.strokeRect(0, 0, desk.width, desk.height);
+ context.strokeRect(2, 2, desk.width-4, desk.height-4);
+ context.fillStyle = '#B03060';
+ context.fillRect(5, 5, desk.width-10, desk.height-10);
+ var iNum = cells.value;
+  for (i=0; i<iNum; i+=2)
+ for (j=0; j<iNum; j+=2) {
+ context.clearRect(5+i*(desk.width-10)/iNum, 5+j*(desk.width-10)/iNum, (desk.width-10)/iNum, (desk.width-10)/iNum);
+ context.clearRect(5+(i+1)*(desk.width-10)/iNum, 5+(j+1)*(desk.width-10)/iNum, (desk.width-10)/iNum, (desk.width-10)/iNum);
+ 
+ }
+} 
+</script>
+ </body>
+</html>
